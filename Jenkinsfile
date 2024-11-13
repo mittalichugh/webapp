@@ -2,10 +2,17 @@ pipeline {
     agent {
         label 'master'
     }
+    environment {
+        SONAR_TOKEN - 'bda2306e7e6d4fc39d826de441a1f5d1d1eea091'
+    }
+    
     stages {
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                bat '<properties>
+  <sonar.organization>mittalichugh</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>'
             }
         }
 //         stage('Sonar-Report') {
