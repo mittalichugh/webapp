@@ -9,10 +9,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat '<properties>
-  <sonar.organization>mittalichugh</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-</properties>'
+                bat 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mittalichugh_webapp'
             }
         }
 //         stage('Sonar-Report') {
