@@ -3,13 +3,13 @@ pipeline {
         label 'master'
     }
     environment {
-        SONAR_TOKEN - 'bda2306e7e6d4fc39d826de441a1f5d1d1eea091'
+       SONAR_TOKEN = 'f0922d9b4518dc2c37cab294e0ccf779e97762b0'
     }
     
     stages {
         stage('Build') {
             steps {
-                bat 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mittalichugh_webapp'
+                bat 'mvn -B -DskipTests clean package'
             }
         }
 //         stage('Sonar-Report') {
@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Sonar-Report') {
             steps {
-                bat 'mvn clean install sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.analysis.mode=publish'
+                bat 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mittalichugh_webapp'
             }
         }
     }
